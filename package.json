@@ -1,0 +1,27 @@
+{
+  "name": "a-bite-of-backbone",
+  "version": "1.0.0",
+  "description": "Try to get familiar with backbone by writing some small apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fedcuit/a-bite-of-backbone.git"
+  },
+  "keywords": [
+    "backbone"
+  ],
+  "author": "Erdong FENG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fedcuit/a-bite-of-backbone/issues"
+  },
+  "homepage": "https://github.com/fedcuit/a-bite-of-backbone",
+  "devDependencies": {
+    "backbone": "^1.2.0",
+    "http-server": "^0.8.0"
+  }
+}
