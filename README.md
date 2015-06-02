@@ -14,7 +14,7 @@ A bit of Backbone
 Model
 -------
 
-在`Backbone`的理念中, 一个`Model`应该算是存在于客户端的与服器端`resource`/`entiry`对应的一个JS对象, 定义一个`Model`很简单:
+在`Backbone`的理念中, 一个`Model`应该算是存在于客户端的与服器端`resource`/`entity`对应的一个JS对象, 定义一个`Model`很简单:
 
 ``` javascript
 TodoItem = Backbone.Model.extend({
@@ -37,12 +37,12 @@ TodoItem = Backbone.Model.extend({
   
   ``` javascript
   var todoItem = new TodoItem();
-  console.log(JSON.stringify(todoItem.toJSON()))
+  console.log(JSON.stringify(todoItem.toJSON()));
   // {"title":"","completed":false}
   ```
   * 当创建Model实例时传入了对象, 那么这个对象会跟`defaults`进行merge
   ``` javascript
-  var todoItem = new TodoItem({"newAttr": "valueOfNewAttr", "title": "Build a time machine"})
-  console.log(JSON.stringify(todoItem.toJSON()))
+  var todoItem = new TodoItem({"newAttr": "valueOfNewAttr", "title": "Build a time machine"});
+  console.log(JSON.stringify(todoItem.toJSON()));
   // {"newAttr":"valueOfNewAttr","title":"Build a time machine","completed":false}
   ```
