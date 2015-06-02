@@ -1,22 +1,32 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
     <script type="text/template" id="todoItemTemplate">
         <input type="checkbox" class="toggle"/>
-        <label><%= title %></label>
-        <a href="#" class="destroy">remove</a>
+        <label class="label label-default"><%= title %></label>
+        <a href="#" class="destroy pull-right"><span class="label label-danger">Remove</span></a>
     </script>
 </head>
 <body>
 
-<main id="mainContent">
-    <div class="newItem">
-        <input type="text" name="" id="" class="title"/>
-        <button type="button" class="add">New Item</button>
+<div class="container-fluid">
+    <div class="row">
+        <div id="mainContent" class="col-lg-4 col-lg-offset-4">
+            <br/><br/><br/><br/>
+
+            <div class="newItem input-group">
+                <input type="text" name="" id="" class="title form-control"/>
+                <span class="input-group-btn">
+                    <button class="add btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            <hr/>
+            <ul class="items list-group"></ul>
+        </div>
     </div>
-    <ul class="items"></ul>
-</main>
+</div>
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="node_modules/underscore/underscore.js"></script>
 <script src="node_modules/backbone/backbone.js"></script>
