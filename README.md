@@ -50,8 +50,7 @@ TodoItem = Backbone.Model.extend({
 
    将对`Model`的验证逻辑放在这个属性对应的方法中, 一般情况下, 我们不会直接调用这个`validate`方法, 而它扮演的角色有点像`实现`定义在父类中的`抽象方法`, 而这个方法会在`Model`的其他方法中被用到, 比如以下的这些方法:
    * `isValid()`
-   
-	   我们可以调用`Model`上的`isValid()`方法来判断这个`Model`上的属性值满足验证条件
+   我们可以调用`Model`上的`isValid()`方法来判断这个`Model`上的属性值满足验证条件
    
    ```javascript
    TodoItem = Backbone.Model.extend({
@@ -73,9 +72,10 @@ TodoItem = Backbone.Model.extend({
    ```
    * `save()` or `set()`
    
-   		默认情况下调用`Model`的`save()`方法会触发`validate()`, 可以通过在`save()`的时候使用option `{validate: false}`来跳过验证. 类似的, 也可以在`set()`时通过option `{validate: true}`来触发验证.
+   默认情况下调用`Model`的`save()`方法会触发`validate()`, 可以通过在`save()`的时候使用option `{validate: false}`来跳过验证. 类似的, 也可以在`set()`时通过option `{validate: true}`来触发验证.
    > `validate()`方法的返回值比较有趣, 如果验证通过了, 则什么都不用返回, 如果验证失败了, 则需要返回点什么(字符中或是对象都可以).
    
    `validate()`方法验证失败之后有两件事件会发现:
+
    1. 将`validate()`返回的结果添加到`Model`中, 可以通过`model.validationError`来访问
    2. 在`Model`上触发`invalid`事件, 并像model和error绑定对回调函数上
