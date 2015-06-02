@@ -8,14 +8,25 @@ myTodoApp.TodoListView = Backbone.View.extend({
         this.listenTo(todoList, "add", this.addNew);
     },
     events: {
-        "click .newItem .add": "addNewItem"
+        "click .newItem .add": "addByClick",
+        "keypress .newItem .title": "addByEnter"
     },
-    addNewItem: function () {
+    addByClick: function () {
         var todoItem = new myTodoApp.TodoItem({title: this.$newItemTitle.val()});
         todoList.push(todoItem);
     },
+    addByEnter: function (event) {
+        if (event.charCode == 13) {
+            this.addByClick();
+        }
+    },
     addNew: function (newItem) {
-        var todoItemView = new myTodoApp.TodoItemView({"model": newItem});
-        this.$items.append(todoItemView.render());
+        if (newItem.isValid()) {
+            var todoItemView = new myTodoApp.TodoItemView({"model": newItem});
+            this.$items.append(todoItemView.render());
+            this.$newItemTitle.val('');
+        } else {
+            alert(newItem.validationError);
+        }
     }
 });
