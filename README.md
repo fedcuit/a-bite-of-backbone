@@ -84,16 +84,16 @@ View
 ---------
 简单讲, `View`就是用来展示`Model`里面的数据的.
 
-这样可以简单回顾一下我用过的一些前端JS框架怎么是怎么处理数据展示的, 从最原始的jQuery开始:
+这样可以简单回顾一下我用过的一些前端JS框架是怎么处理数据展示的, 从最原始的jQuery开始:
 只使用jQuery的时候, 当我们已经通过AJAX拿到数据之后, 我们可能需要先定位到需要显示数据的元素然后通过`el.val('...')`或者`el.text('...')`将数据手动设置上去. 当元素的值被更新之后需要将修改反应到后端时, 我们可能需要取到所有的元素的最新值然后发送到后台.
 
-如上面那样通过操作对应的单个的DOM元素去设置值的方式写起来很繁琐, 如果返回的数据里面有十几甚至几十个条目的话, 写出来的代码更是毫无美感可言, 于是人们想到了使用JS`模板`, 通过一段通常是写在`<head></head>`中`<script type="text/template" id="myTemplate">...</script>`来表示最终要后面的HTML的结构, 在其中使用占位符来标识哪里部分需要被真正传入的数据替换. 有了这样的之后, 当拿到AJAX的返回结果时, 我们只需要将数据填充到这个模板, 然后将生成的HTML添加到页面中就可以了, 一句话就可以搞定, 比如 `$container.html(_.template($('#myTemplate'), ajaxReponseData))`. 比较常用的模板引擎有`mustache`, `underscore template`
+如上面那样通过操作对应的单个的DOM元素去设置值的方式写起来很繁琐, 如果返回的数据里面有十几甚至几十个条目的话, 写出来的代码更是毫无美感可言, 于是人们想到了使用JS`模板`, 通过一段通常是写在`<head></head>`中`<script type="text/template" id="myTemplate">...</script>`来表示最终要后面的HTML的结构, 在其中使用占位符来标识哪里部分需要被真正传入的数据替换. 定义好模板后, 当拿到AJAX的返回结果时, 我们只需要将数据填充到这个模板, 然后将生成的HTML添加到页面中就可以了, 一句话就可以搞定, 比如 `$container.html(_.template($('#myTemplate'), ajaxReponseData))`. 比较常用的模板引擎有`mustache`, `underscore template`
 
 事情发展到这里还没完, 现在数据显示的问题解决的差不多了, 但是如果用户将某些DOM元素的值修改之后, 我们还需要将所有的元素的值读取一遍, 然后将这些值发送到后台去更新这条记录. 我们通过模板技术解决了繁琐的DOM设值, 但是数据的更新还是一个问题.
 
 一起来看看Backbone的`View`是如何解决这个问题.
 
-首先我们需要定义一个Backbone `View`, 定义的方法与`Model`非常的类似, 只需要继承'View`就可以了:
+首先我们需要定义一个Backbone `View`, 定义的方法与`Model`非常的类似, 只需要继承`View`就可以了:
 ``` javascript
 TodoItemView = Backbone.View.extend({
     template: _.template($("#todoItemTemplate").html()),
@@ -121,7 +121,7 @@ TodoItemView = Backbone.View.extend({
 * `el`
     
     这个属性通常是一个_css selector_, 对应页面中这个`View`将被添加到HTML元素, 可以理解成是这个`View`的container, 个人理解是在创建Backbone `Collection`, `View`, `Model`的实例的时候, 都可以向其中传入一个对象, 这个对象的属性会与定义时的那些属性进行merge. 所以`el`既可以声明在`View`类的定义中, 也可以通过参加传入, 如 `var todoItemView = new TodoItemView({el: jQuery('.todoItem'});`
-    在`View`内部使用的时候, 通常是通过`this.$el`来操作这个容器, `this.$el`将会引用你配置的`el`对应的jQuery对应
+    在`View`内部使用的时候, 通常是通过`this.$el`来操作这个容器, `this.$el`将会引用你配置的`el`对应的jQuery对象.
     除了`el`之外, 还有一些其他的属性也是跟`View`的容器想关的:
     * `tagName`
     * `className`
