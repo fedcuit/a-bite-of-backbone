@@ -6,7 +6,9 @@ myTodoApp.TodoListView = Backbone.View.extend({
         this.$toggleAll = this.$('.toggle-all');
         this.$newItemTitle = this.$(".newItem .title");
         this.$items = this.$('.items');
+        this.$itemCount = this.$('.badge');
         this.listenTo(todoList, "add", this.addNew);
+        this.listenTo(todoList, "add remove", this.updateCounter);
     },
     events: {
         "click .newItem .add": "addByClick",
@@ -36,5 +38,8 @@ myTodoApp.TodoListView = Backbone.View.extend({
         todoList.each(function (todo) {
             todo.set('completed', self.$toggleAll.prop("checked"));
         });
+    },
+    updateCounter: function() {
+        this.$itemCount.text(todoList.models.length);
     }
 });
