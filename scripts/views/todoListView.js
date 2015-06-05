@@ -19,12 +19,12 @@ myTodoApp.TodoListView = Backbone.View.extend({
         "click .newItem .add": "addByClick",
         "keypress .newItem .title": "addByEnter",
         "change .toggle-all": "toggleAll",
-        "click .completed": "filterCompleted",
-        "click .uncompleted": "filterUncompleted",
-        "click .all": "filterAll",
-        "click .clear-done": "clearDone"
+        "click .completed": todoList.filterCompleted,
+        "click .uncompleted": todoList.filterUncompleted,
+        "click .all": todoList.filterAll,
+        "click .clear-done": todoList.clearDone
     },
-    render: function() {
+    render: function () {
         todoList.fetch({reset: true});
         todoList.each(function (todo) {
             this.renderItem(todo);
@@ -34,7 +34,7 @@ myTodoApp.TodoListView = Backbone.View.extend({
         todoList.create({title: this.$newItemTitle.val()});
     },
     addByEnter: function (event) {
-        if (event.charCode == 13) {
+        if (event.which == 13) {
             this.addByClick();
         }
     },
@@ -51,34 +51,9 @@ myTodoApp.TodoListView = Backbone.View.extend({
         }
     },
     toggleAll: function () {
-        var self = this;
-        todoList.each(function (todo) {
-            todo.set('completed', self.$toggleAll.prop("checked"));
-        });
+        todoList.toggleAll(this.$toggleAll.prop("checked"));
     },
     updateCounter: function () {
         this.$itemCount.text(todoList.models.length);
-    },
-    filterCompleted: function () {
-        todoList.each(function (todo) {
-            todo.trigger("visible:completed");
-        });
-    },
-    filterUncompleted: function () {
-        todoList.each(function (todo) {
-            todo.trigger("visible:uncompleted");
-        });
-    },
-    filterAll: function () {
-        todoList.each(function (todo) {
-            todo.trigger("visible:all");
-        });
-    },
-    clearDone: function () {
-        todoList.chain().filter(function (todo) {
-            return todo.get("completed");
-        }).each(function (todo) {
-            todo.destroy();
-        });
     }
 });
