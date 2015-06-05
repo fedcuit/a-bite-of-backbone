@@ -23,8 +23,7 @@ myTodoApp.TodoListView = Backbone.View.extend({
         "click .clear-done": "clearDone"
     },
     addByClick: function () {
-        var todoItem = new myTodoApp.TodoItem({title: this.$newItemTitle.val()});
-        todoList.push(todoItem);
+        todoList.create({title: this.$newItemTitle.val()});
     },
     addByEnter: function (event) {
         if (event.charCode == 13) {

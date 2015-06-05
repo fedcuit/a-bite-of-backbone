@@ -22,6 +22,7 @@
   "homepage": "https://github.com/fedcuit/a-bite-of-backbone",
   "devDependencies": {
     "backbone": "^1.2.0",
+    "backbone.localstorage": "^1.1.16",
     "bootstrap": "^3.3.4",
     "http-server": "^0.8.0",
     "jquery": "^2.1.4",
