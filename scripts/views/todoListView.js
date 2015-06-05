@@ -12,6 +12,8 @@ myTodoApp.TodoListView = Backbone.View.extend({
         this.initComponents();
         this.listenTo(todoList, "add", this.addNew);
         this.listenTo(todoList, "add remove", this.updateCounter);
+
+        this.render();
     },
     events: {
         "click .newItem .add": "addByClick",
@@ -22,6 +24,12 @@ myTodoApp.TodoListView = Backbone.View.extend({
         "click .all": "filterAll",
         "click .clear-done": "clearDone"
     },
+    render: function() {
+        todoList.fetch({reset: true});
+        todoList.each(function (todo) {
+            this.renderItem(todo);
+        }, this);
+    },
     addByClick: function () {
         todoList.create({title: this.$newItemTitle.val()});
     },
@@ -30,10 +38,13 @@ myTodoApp.TodoListView = Backbone.View.extend({
             this.addByClick();
         }
     },
+    renderItem: function (item) {
+        var todoItemView = new myTodoApp.TodoItemView({"model": item});
+        this.$items.append(todoItemView.render());
+    },
     addNew: function (newItem) {
         if (newItem.isValid()) {
-            var todoItemView = new myTodoApp.TodoItemView({"model": newItem});
-            this.$items.append(todoItemView.render());
+            this.renderItem(newItem);
             this.$newItemTitle.val('');
         } else {
             alert(newItem.validationError);
