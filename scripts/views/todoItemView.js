@@ -20,7 +20,7 @@ myTodoApp.TodoItemView = Backbone.View.extend({
         "click .destroy": "handleDestroy"
     },
     handleToggle: function () {
-        this.model.set("completed", this.$('.toggle').prop('checked'));
+        this.model.save({"completed": this.$('.toggle').prop('checked')});
     },
 
     handleDestroy: function () {

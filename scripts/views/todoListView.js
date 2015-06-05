@@ -11,7 +11,7 @@ myTodoApp.TodoListView = Backbone.View.extend({
     initialize: function () {
         this.initComponents();
         this.listenTo(todoList, "add", this.addNew);
-        this.listenTo(todoList, "add remove", this.updateCounter);
+        this.listenTo(todoList, "add remove reset", this.updateCounter);
 
         this.render();
     },

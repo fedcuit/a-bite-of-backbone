@@ -27,8 +27,7 @@ myTodoApp.TodoList = Backbone.Collection.extend({
     },
     toggleAll: function (checked) {
         todoList.each(function (todo) {
-            todo.set('completed', checked);
-            todo.save();
+            todo.save({'completed': checked});
         }, this);
     }
 });
