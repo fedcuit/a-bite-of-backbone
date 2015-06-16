@@ -3,52 +3,11 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
-    <script type="text/template" id="todoItemTemplate">
-        <input type="checkbox" class="toggle" <%= completed && 'checked' %>/>
-        <label class="label label-default"><%= title %></label>
-        <a href="#" class="destroy pull-right"><span class="label label-danger">Remove</span></a>
-    </script>
 </head>
 <body>
-
-<div class="container-fluid">
-    <div class="row">
-        <div id="mainContent" class="col-lg-4 col-lg-offset-4">
-            <br/><br/><br/><br/>
-
-            <div class="newItem input-group">
-                <span class="input-group-addon">
-                    <input type="checkbox" class="toggle-all" aria-label="...">
-                </span>
-                <input type="text" name="" class="title form-control"/>
-                <span class="input-group-btn">
-                    <button class="add btn btn-default" type="button">Go!</button>
-                </span>
-            </div>
-            <hr/>
-            <ul class="items list-group"></ul>
-            <div>
-                <label><span class="badge">0</span> item left</label>
-                <button class="btn pull-right clear-done">clear completed</button>
-                <div class="btn-group pull-right" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default all">All</button>
-                    <button type="button" class="btn btn-default uncompleted">Active</button>
-                    <button type="button" class="btn btn-default completed">Completed</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/underscore/underscore.js"></script>
-<script src="node_modules/underscore.string/dist/underscore.string.js"></script>
-<script src="node_modules/backbone/backbone.js"></script>
-<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
-<script src="scripts/models/todoItem.js"></script>
-<script src="scripts/collections/todoList.js"></script>
-<script src="scripts/views/todoItemView.js"></script>
-<script src="scripts/views/todoListView.js"></script>
-<script src="scripts/main.js"></script>
-
+<ul>
+    <li><a href="todomvc.html">Todo MVC</a></li>
+    <li><a href="library.html">Library</a></li>
+</ul>
 </body>
 </html>
