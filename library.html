@@ -3,15 +3,22 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
-    <script type="text/template">
-
+    <link rel="stylesheet" href="styles/library/screen.css"/>
+    <script id="bookTemplate" type="text/template"> <img src="<%= coverImage %>"/>
+    <ul>
+        <li><%= title %></li>
+        <li><%= author %></li>
+        <li><%= releaseDate %></li>
+        <li><%= keywords %></li>
+    </ul>
+    <button class="delete">Delete</button>
     </script>
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
-        <div id="mainContent" class="col-lg-4 col-lg-offset-4">
+        <div id="mainContent" class="col-lg-8 col-lg-offset-2">
             <form action="#" class="form-horizontal">
                 <div class="form-group">
                     <label for="coverImage" class="control-label col-sm-4">Cover Image:</label>
@@ -41,10 +48,11 @@
                         <input type="text" name="" id="releaseDate" class="form-control"/>
                     </div>
                 </div>
-                <div class="pull-right">
-                    <button class="btn btn-default">Add</button>
+                <div class="form-group">
+                    <button class="btn btn-default pull-right">Add</button>
                 </div>
             </form>
+            <div id="books"></div>
         </div>
     </div>
 </div>
@@ -52,7 +60,11 @@
 <script src="node_modules/underscore/underscore.js"></script>
 <script src="node_modules/underscore.string/dist/underscore.string.js"></script>
 <script src="node_modules/backbone/backbone.js"></script>
-<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
+<script src="scripts/library/views/book.js"></script>
+<script src="scripts/library/views/library.js"></script>
+<script src="scripts/library/models/book.js"></script>
+<script src="scripts/library/collections/library.js"></script>
+<script src="scripts/library/app.js"></script>
 
 </body>
 </html>
